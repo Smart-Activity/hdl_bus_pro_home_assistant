@@ -4,10 +4,6 @@
 
 Custom integration for controlling an HDL Buspro installation from Home Assistant.
 
-> [!IMPORTANT]
-> Before publishing this repository, replace `[YOUR NAME OR COMPANY]` in
-> `NOTICE` with the name that should own the new modifications.
-
 ## Project status
 
 This is an independent continuation based on
