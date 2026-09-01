@@ -1,0 +1,14 @@
+{
+  "domain": "buspro",
+  "name": "HDL Buspro",
+  "config_flow": true,
+  "documentation": "https://github.com/eyesoft/home_assistant_buspro",
+  "codeowners": [],
+  "dependencies": [],
+  "requirements": [],
+  "ssdp": [],
+  "zeroconf": [],
+  "homekit": {},
+  "version": "0.1.0",
+  "iot_class": "local_polling"
+}
