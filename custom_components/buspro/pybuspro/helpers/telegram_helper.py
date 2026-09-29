@@ -111,7 +111,12 @@ class TelegramHelper:
         #    send_buf.append(0)
         #    # send_buf.append(b'\x00\x00')
 
-        operate_code_hex = telegram.operate_code.value
+        # Generic messages expose the raw operate code as two bytes, while
+        # built-in device commands use an OperateCode enum.
+        if isinstance(telegram.operate_code, (list, tuple)):
+            operate_code_hex = telegram.operate_code
+        else:
+            operate_code_hex = telegram.operate_code.value
         send_buf.append(operate_code_hex[0])
         send_buf.append(operate_code_hex[1])
 

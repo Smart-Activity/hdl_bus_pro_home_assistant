@@ -4,6 +4,10 @@
 
 Custom integration for controlling an HDL Buspro installation from Home Assistant.
 
+> [!IMPORTANT]
+> Before publishing this repository, replace `[YOUR NAME OR COMPANY]` in
+> `NOTICE` with the name that should own the new modifications.
+
 ## Project status
 
 This is an independent continuation based on
@@ -28,6 +32,29 @@ Restart Home Assistant.
 Go to Settings > Integrations and Add Integration "HDL Buspro". Type in IP address and port number of the gateway.
 
 ## Configuration
+
+#### Cover platform
+
+Configure an HDL curtain using `<subnet>.<device>.<curtain number>`:
+
+```yaml
+cover:
+  - platform: buspro
+    devices:
+      1.40.1:
+        name: Gordijn Woonkamer
+```
+
+The entity sends operate code `E3 E0`. Open, close and stop use commands `1`,
+`2` and `0`. If a curtain motor is wired in the opposite direction, swap the
+two commands in YAML:
+
+```yaml
+      1.40.1:
+        name: Gordijn Woonkamer
+        open_command: 2
+        close_command: 1
+```
 
 #### Light platform
    
