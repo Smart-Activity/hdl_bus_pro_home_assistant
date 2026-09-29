@@ -69,6 +69,8 @@ class BusproCover(CoverEntity):
     """Representation of an HDL Buspro curtain."""
 
     _attr_should_poll = False
+    _attr_assumed_state = True
+    _attr_is_closed = None
     _attr_supported_features = (
         CoverEntityFeature.OPEN | CoverEntityFeature.CLOSE | CoverEntityFeature.STOP
     )
@@ -90,6 +92,10 @@ class BusproCover(CoverEntity):
         self._open_command = open_command
         self._close_command = close_command
         self._attr_name = name
+        # HDL curtain control does not report a dependable position yet.
+        # Explicitly initialize the state expected by Home Assistant's
+        # CoverEntity base class and expose it as an assumed state.
+        self._attr_is_closed = None
         self._attr_unique_id = (
             f"buspro_cover_{device_address[0]}_{device_address[1]}_{curtain_number}"
         )
