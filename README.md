@@ -4,12 +4,16 @@
 
 Custom integration for controlling an HDL Buspro installation from Home Assistant.
 
+> [!IMPORTANT]
+> Before publishing this repository, replace `[YOUR NAME OR COMPANY]` in
+> `NOTICE` with the name that should own the new modifications.
+
 ## Project status
 
 This is an independent continuation based on
 [`eyesoft/home_assistant_buspro`](https://github.com/eyesoft/home_assistant_buspro).
 It starts at version `0.1.0`. The original MIT copyright notice is retained;
-new modifications may be copyrighted by `Smart-Activity`.
+new modifications may be copyrighted by `[YOUR NAME OR COMPANY]`.
 
 ## Installation
 ### Manual installation
@@ -51,6 +55,10 @@ two commands in YAML:
         open_command: 2
         close_command: 1
 ```
+
+Restart Home Assistant completely after changing the YAML configuration. The
+cover platform waits for the Buspro connection during startup and is retried
+automatically if the gateway is not ready yet.
 
 #### Light platform
    

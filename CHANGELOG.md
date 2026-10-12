@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.2.2 - 2026-10-12
+
+- Fixed intermittent cover setup caused by Home Assistant loading the YAML
+  cover platform before the Buspro config entry finished connecting.
+- Cover setup now raises `PlatformNotReady` and is retried automatically.
+- Added log messages for delayed and successful cover setup.
+
 ## 0.2.1 - 2026-09-29
 
 - Fixed cover entities failing to register on recent Home Assistant versions.

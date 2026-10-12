@@ -10,6 +10,7 @@ from homeassistant.components.cover import (
     CoverEntityFeature,
 )
 from homeassistant.const import CONF_DEVICES, CONF_NAME
+from homeassistant.exceptions import PlatformNotReady
 
 from . import DATA_BUSPRO
 from .pybuspro.devices.generic import Generic
@@ -36,7 +37,17 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
 
 async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
     """Set up HDL Buspro curtain entities from YAML."""
-    hdl = hass.data[DATA_BUSPRO].hdl
+    buspro = hass.data.get(DATA_BUSPRO)
+    if (
+        buspro is None
+        or not hasattr(buspro, "hdl")
+        or buspro.hdl is None
+        or not getattr(buspro, "connected", False)
+    ):
+        _LOGGER.info("HDL Buspro is not ready; retrying cover setup later")
+        raise PlatformNotReady("Waiting for the HDL Buspro connection")
+
+    hdl = buspro.hdl
     entities = []
 
     for address, device_config in config[CONF_DEVICES].items():
@@ -63,6 +74,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         )
 
     async_add_entities(entities)
+    _LOGGER.info("Added %d HDL Buspro cover entities", len(entities))
 
 
 class BusproCover(CoverEntity):
