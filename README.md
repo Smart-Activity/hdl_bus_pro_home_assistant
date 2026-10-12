@@ -13,7 +13,7 @@ Custom integration for controlling an HDL Buspro installation from Home Assistan
 This is an independent continuation based on
 [`eyesoft/home_assistant_buspro`](https://github.com/eyesoft/home_assistant_buspro).
 It starts at version `0.1.0`. The original MIT copyright notice is retained;
-new modifications may be copyrighted by `[YOUR NAME OR COMPANY]`.
+new modifications may be copyrighted by `Smart-Activity`.
 
 ## Installation
 ### Manual installation
